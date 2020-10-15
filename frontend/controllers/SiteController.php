@@ -14,6 +14,8 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use Alchemy\Zippy\Zippy;
+use PclZip;
 
 /**
  * Site controller
@@ -142,7 +144,41 @@ class SiteController extends Controller
      */
     public function actionAbout()
     {
-        return $this->render('about');
+        $baseDir = Yii::$app->getBasePath();
+
+        $ds = DIRECTORY_SEPARATOR;
+        $fileStoreDir = $baseDir.$ds.'file_store';
+        //$zippy = Zippy::load();
+
+        //$fileName = 'zk_thesis.zip';
+        $fileName = '111.zip';
+
+        try{
+
+            //$zip = $zippy->open($fileStoreDir.$ds.$fileName);
+            //$zip->extract($fileStoreDir.$ds.'tmp');
+            $zip = new PclZip($fileStoreDir.$ds.$fileName);
+
+            $zip->extract($fileStoreDir.$ds.'tmp');
+
+        }
+        catch (\Exception $e)
+        {
+            $data['errorMsg'] = $e->getMessage();
+        }
+
+
+        $data['baseDir'] = $baseDir;
+
+        return $this->render('about', ['data'=>$data]);
+    }
+
+
+    public function actionInfo()
+    {
+        echo phpinfo();
+
+        Yii::$app->end(0);
     }
 
     /**

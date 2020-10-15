@@ -7,7 +7,6 @@ use PHPUnit\ExampleExtension\TestCaseTrait;
 use PHPUnit\Framework\TestCase;
 class StackSetUpTest extends TestCase
 {
-    use TestCaseTrait
     protected $stack;
 
     public function setUp():void

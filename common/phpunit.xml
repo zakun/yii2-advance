@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="phpunit.xsd"
-         bootstrap="common/tests/_bootstrap.php"
+         bootstrap="tests/_bootstrap.php"
          executionOrder="depends,defects"
          forceCoversAnnotation="true"
          beStrictAboutCoversAnnotation="true"
@@ -11,12 +11,16 @@
     <testsuites>
         <testsuite name="default">
             <directory suffix="Test.php">tests</directory>
+            <exclude>tests/unit/models/LoginFormTest.php</exclude>
         </testsuite>
     </testsuites>
-
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">models</directory>
+            <directory suffix=".php">tests/unit/</directory>
+            <exclude>
+                <directory suffix=".php">tests/unit/models</directory>
+                <file>tests/unit/models/LoginFormTest.php</file>
+            </exclude>
         </whitelist>
     </filter>
 </phpunit>

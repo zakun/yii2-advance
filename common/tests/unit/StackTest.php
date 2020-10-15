@@ -3,9 +3,14 @@
 
 namespace common\tests\unit;
 
+use PHPUnit\ExampleExtension\TestCaseTrait;
 use PHPUnit\Framework\TestCase;
 class StackTest extends TestCase
 {
+    use TestCaseTrait;
+    /**
+     * @covers
+     */
     public function testPushAndPop()
     {
         $stack = [];
